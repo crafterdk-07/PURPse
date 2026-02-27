@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine? 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg, #ffd6e8, #ffc2d1, #ffe5ec);
+    overflow:hidden;
+}
+
+.container{
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    padding:50px 40px;
+    border-radius:30px;
+    text-align:center;
+    width:360px;
+    box-shadow:0 10px 40px rgba(255,182,193,0.5);
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-size:26px;
+    color:#ff4d88;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:16px;
+    color:#555;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+button{
+    padding:10px 22px;
+    border:none;
+    border-radius:25px;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.yes{
+    background:#ff4d88;
+    color:white;
+    box-shadow:0 0 15px #ff4d88;
+}
+
+.yes:hover{
+    transform:scale(1.1);
+}
+
+.no{
+    background:white;
+    color:#ff4d88;
+    border:2px solid #ff4d88;
+    position:relative;
+}
+
+.message{
+    margin-top:25px;
+    font-size:18px;
+    color:#ff4d88;
+    font-weight:bold;
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:18px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0) rotate(0deg);}
+    100%{transform:translateY(-100vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="sorry.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>Will You Be Mine? 💗</h1>
+    <p>
+        From the moment we started talking,  
+        my days became brighter 🌸  
+        I really like you...  
+        Would you like to be with me? 💕
+    </p>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">Yes 💖</button>
+        <button class="no" onmouseover="moveButton()">No 🙈</button>
+    </div>
+
+    <div class="message" id="msg"></div>
+</div>
+
+<script>
+
+// Yes button
+function yesClicked(){
+    document.getElementById("msg").innerHTML =
+    "You just made me the happiest person alive 💍💗";
+}
+
+// No button run away effect
+function moveButton(){
+    var button = document.querySelector(".no");
+    var x = Math.random() * 200 - 100;
+    var y = Math.random() * 200 - 100;
+    button.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Floating hearts
+setInterval(function(){
+    var heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+        heart.remove();
+    },6000);
+
+},600);
+
+// autoplay fix
+window.addEventListener("click", function() {
+    const audio = document.querySelector("audio");
+    audio.play();
+}, { once: true });
+
+</script>
+
+</body>
+</html>
